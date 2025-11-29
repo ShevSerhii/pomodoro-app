@@ -8,17 +8,17 @@
     <div class="timer-circle">
       <span class="time">{{ timer.displayTime() }}</span>
       <span class="status">
-        {{ timer.currentMode() === TimerMode.WORK ? 'ФОКУС' : 'ВІДПОЧИНОК' }}
+        {{ timer.currentMode() === TimerMode.WORK ? 'FOCUS' : 'BREAK' }}
       </span>
     </div>
   </div>
 
   <div class="controls">
     <button class="main-btn" (click)="timer.toggleTimer()">
-      {{ timer.isRunning() ? 'ПАУЗА' : 'СТАРТ' }}
+      {{ timer.isRunning() ? 'PAUSE' : 'START' }}
     </button>
     
-    <button class="reset-btn" (click)="timer.resetTimer()" title="Скинути">
+    <button class="reset-btn" (click)="timer.resetTimer()" title="Reset Timer">
       ↺
     </button>
   </div>
@@ -26,30 +26,30 @@
   <div class="modes">
     <button [class.active]="timer.currentMode() === TimerMode.WORK"
             (click)="timer.setMode(TimerMode.WORK)">
-      Робота
+      Work
     </button>
     <button [class.active]="timer.currentMode() === TimerMode.SHORT_BREAK"
             (click)="timer.setMode(TimerMode.SHORT_BREAK)">
-      Коротка
+      Short
     </button>
     <button [class.active]="timer.currentMode() === TimerMode.LONG_BREAK"
             (click)="timer.setMode(TimerMode.LONG_BREAK)">
-      Довга
+      Long
     </button>
   </div>
 
   <div class="settings">
-    <h3>Налаштування (хв)</h3>
+    <h3>Settings (min)</h3>
     <div class="inputs">
       <div class="input-group">
-        <label>Робота</label>
+        <label>Work</label>
         <input type="number" min="1" max="60"
                [ngModel]="timer.config[TimerMode.WORK]" 
                (ngModelChange)="timer.updateDuration(TimerMode.WORK, $event)">
       </div>
 
       <div class="input-group">
-        <label>Перерва</label>
+        <label>Break</label>
         <input type="number" min="1" max="30"
                [ngModel]="timer.config[TimerMode.SHORT_BREAK]" 
                (ngModelChange)="timer.updateDuration(TimerMode.SHORT_BREAK, $event)">
